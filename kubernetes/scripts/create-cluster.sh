@@ -41,7 +41,6 @@ mv kops.pem  ~/.ssh/id_rsa
 chmod 400  ~/.ssh/id_rsa
 ssh-keygen -y -f  ~/.ssh/id_rsa >  ~/.ssh/id_rsa.pub
 
+kops create cluster --zones us-east-1a ${NAME}
 kops create secret --name myfirstcluster.k8s.local sshpublickey admin -i ~/.ssh/id_rsa.pub
-
-kops create cluster --zones us-east-1 ${NAME}
 kops update cluster ${NAME} --yes
