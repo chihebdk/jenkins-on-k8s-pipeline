@@ -36,9 +36,10 @@ export KOPS_STATE_STORE=s3://prefix-chiheb-dkhil-state-store
 #Recreate key-pair
 aws ec2 delete-key-pair --key-name kops
 aws ec2 create-key-pair --key-name kops --query 'KeyMaterial' --output text > kops.pem
-mv kops.pem  ../.ssh/id_rsa
-chmod 400 id_rsa
-ssh-keygen -y -f ./.ssh/id_rsa > ./.ssh/id_rsa.pub
+mkdir ~/.ssh
+mv kops.pem  ~/.ssh/id_rsa
+chmod 400  ~/.ssh/id_rsa
+ssh-keygen -y -f  ~/.ssh/id_rsa >  ~/.ssh/id_rsa.pub
 
 kops create secret --name myfirstcluster.k8s.local sshpublickey admin -i ~/.ssh/id_rsa.pub
 
