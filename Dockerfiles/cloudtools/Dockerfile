@@ -26,3 +26,6 @@ FROM ubuntu:16.04
     curl -LO  https://github.com/stedolan/jq/releases/download/$(curl -s  https://github.com/stedolan/jq/releases/latest | grep -P '(?<=(/tag/))(.*)(?=\")' -o)/jq-linux64 > /dev/null 2>&1  && \
     chmod +x jq-linux64  && \
     mv jq-linux64 /usr/local/bin/jq
+
+
+  
