@@ -9,5 +9,6 @@ image_resource:
 params:
   AWS_ACCESS_KEY_ID: ((AWS_ID))
   AWS_SECRET_ACCESS_KEY: ((AWS_ACCESS))
+  AWS_DEFAULT_REGION:  us-east-1
 run:
   path: ./jenkins-on-k8s-pipeline/kubernetes/scripts/create-cluster.sh
