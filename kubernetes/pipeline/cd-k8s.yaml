@@ -13,6 +13,10 @@ jobs:
       trigger: true
     - task: create-cluster
       file: jenkins-on-k8s-pipeline/kubernetes/tasks/create-cluster.yaml
+      params:        
+        AWS_ACCESS_KEY_ID: ((AWS_ID))
+        AWS_SECRET_ACCESS_KEY: ((AWS_ACCESS))
+ 
 
 
 

@@ -6,5 +6,8 @@ image_resource:
     source:
       repository: chihebdk/cloudtools
       tag: latest
+params:
+  AWS_ACCESS_KEY_ID: ((AWS_ID))
+  AWS_SECRET_ACCESS_KEY: ((AWS_ACCESS))
 run:
   path: ./jenkins-on-k8s-pipeline/kubernetes/scripts/create-cluster.sh
