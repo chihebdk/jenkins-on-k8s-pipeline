@@ -1,0 +1,45 @@
+resource_types:
+- name: pull-request
+  type: docker-image
+  source:
+    repository: jtarchie/pr
+resources:
+- name: cd-k8s
+  type: pull-request
+  source:
+    access_token: 933b446eb4cfa0d7f62430f382878f0aad443e9f
+    repo: chihebdk/jenkins-on-k8s-pipeline
+jobs:
+- name: jenkins-setup
+  serial: true
+  plan:
+  - do:
+    - get: cd-k8s
+      trigger: true
+      params:
+        fetch_merge: true
+    - task: create-cluster
+      params:
+        service_account_json: {{service_account_json}}
+        project_id: {{project_id}}
+        zone: us-east1-d
+      on_success:
+        put: cd-k8s
+        params:
+          path: jenkins-on-k8s-pipeline
+          status: success
+          context: concourse-ci/create-cluster
+      on_failure:
+        put: cd-k8s
+        params:
+          path: jenkins-on-k8s-pipeline
+          status: failure
+          context: concourse-ci/create-cluster
+      file: jenkins-on-k8s-pipeline/kubernetes/tasks/create-cluster.yaml
+
+
+
+
+
+
+
