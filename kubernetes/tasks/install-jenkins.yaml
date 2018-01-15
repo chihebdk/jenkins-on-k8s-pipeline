@@ -1,10 +1,10 @@
 platform: linux
 inputs:
-- name: jenkins-on-k8s-pipeline
+- name: cd-k8s
 image_resource:
     type: docker-image
     source:
       repository: chihebdk/cloudtools
       tag: latest
 run:
-  path: ./kubernetes/scripts/install-jenkins.sh
+  path: cd-k8s/kubernetes/scripts/install-jenkins.sh
