@@ -1,5 +1,5 @@
 resources:
-- name: cd-k8s
+- name: jenkins-on-k8s-pipeline
   type: git
   source:
     uri: https://github.com/chihebdk/jenkins-on-k8s-pipeline.git
@@ -9,10 +9,10 @@ jobs:
 - name: jenkins-setup
   public: true
   plan:
-    - get: cd-k8s
+    - get: jenkins-on-k8s-pipeline
       trigger: true
     - task: create-cluster
-      file: cd-k8s/kubernetes/tasks/create-cluster.yaml
+      file: jenkins-on-k8s-pipeline/kubernetes/tasks/create-cluster.yaml
 
 
 
