@@ -52,4 +52,4 @@ sleep 240
 kubectl get nodes
 
 
-kops delete cluster --name ${NAME} --yes
+#kops delete cluster --name ${NAME} --yes
