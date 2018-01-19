@@ -3,9 +3,6 @@
 set -x
 
 
-name="kops"
-bucket="prefix-chiheb-dkhil-state-store"
-
 
 #Delete kops user and group
 if [ `aws iam list-users  | jq .[][].UserName |  sed 's/\"//g' | grep -w kops` == "kops" ]; then
@@ -33,10 +30,6 @@ if [ $(aws s3api list-buckets | jq .Buckets[].Name | grep -w \"prefix-chiheb-dkh
     aws s3 rb s3://prefix-chiheb-dkhil-state-store --force  
 fi
 aws s3api create-bucket  --bucket prefix-chiheb-dkhil-state-store --region us-east-1
-
-
-export NAME=myfirstcluster.k8s.local
-export KOPS_STATE_STORE=s3://prefix-chiheb-dkhil-state-store
 
 #Recreate key-pair
 aws ec2 delete-key-pair --key-name kops
