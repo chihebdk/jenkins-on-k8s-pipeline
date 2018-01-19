@@ -10,7 +10,7 @@ jobs:
   public: true
   plan:
     - get: jenkins-on-k8s-pipeline
-      trigger: false
+      trigger: true
     - task: create-cluster
       file: jenkins-on-k8s-pipeline/kubernetes/tasks/create-cluster.yaml
       params:        
