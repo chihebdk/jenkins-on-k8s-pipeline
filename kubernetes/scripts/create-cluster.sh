@@ -33,7 +33,7 @@ aws s3api create-bucket  --bucket prefix-chiheb-dkhil-state-store --region us-ea
 
 #Recreate key-pair
 aws ec2 delete-key-pair --key-name kops
-sleep 10
+sleep 30
 aws ec2 create-key-pair --key-name kops --query 'KeyMaterial' --output text > kops.pem
 mkdir -p ~/.ssh
 mv kops.pem  ~/.ssh/id_rsa
