@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -x
+
+
 name="kops"
 bucket="prefix-chiheb-dkhil-state-store"
 
@@ -12,6 +15,7 @@ if [ `aws iam list-users  | jq .[][].UserName |  sed 's/\"//g' | grep -w kops` =
     aws iam list-attached-group-policies --group-name kops | jq .[][].PolicyArn | sed 's/\"//g' | xargs -L1 aws iam detach-group-policy --group-name kops --policy-arn
     aws iam delete-group --group-name kops
 fi
+sleep 30
 #create kops user and group
 aws iam create-group --group-name kops
 aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess --group-name kops
@@ -36,6 +40,7 @@ export KOPS_STATE_STORE=s3://prefix-chiheb-dkhil-state-store
 
 #Recreate key-pair
 aws ec2 delete-key-pair --key-name kops
+sleep 10
 aws ec2 create-key-pair --key-name kops --query 'KeyMaterial' --output text > kops.pem
 mkdir -p ~/.ssh
 mv kops.pem  ~/.ssh/id_rsa
