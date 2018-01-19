@@ -6,5 +6,4 @@ set -x
 cp -rf output/.kube /root/
 cp -rf output/.helm /root/
 
-exit 0
-
+sleep 1000
