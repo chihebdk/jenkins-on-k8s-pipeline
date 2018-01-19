@@ -48,7 +48,7 @@ kops create secret --name myfirstcluster.k8s.local sshpublickey admin -i ~/.ssh/
 kops update cluster ${NAME} --yes
 
 
-sleep 240
+sleep 300
 kubectl get nodes
 
 helm init
