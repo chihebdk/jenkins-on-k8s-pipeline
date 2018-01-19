@@ -6,7 +6,7 @@ resources:
     branch: master
 
 jobs:
-- name: jenkins-setup
+- name: create-cluster
   public: true
   plan:
     - get: jenkins-on-k8s-pipeline
@@ -17,13 +17,36 @@ jobs:
         AWS_ACCESS_KEY_ID: ((AWS_ID))
         AWS_SECRET_ACCESS_KEY: ((AWS_ACCESS))
         AWS_DEFAULT_REGION:  us-east-1
+        CLUSTER_NAME: ((CLUSTER_NAME))
+        KOPS_STATE_STORE: ((KOPS_STATE_STORE))
+
+- name: install-tools
+  public: true
+  plan:
+    - get: jenkins-on-k8s-pipeline
+      trigger: true
     - task: install-tools
       file: jenkins-on-k8s-pipeline/kubernetes/tasks/install-tools.yaml
       params:        
         AWS_ACCESS_KEY_ID: ((AWS_ID))
         AWS_SECRET_ACCESS_KEY: ((AWS_ACCESS))
         AWS_DEFAULT_REGION:  us-east-1
+        CLUSTER_NAME: ((CLUSTER_NAME))
+        KOPS_STATE_STORE: ((KOPS_STATE_STORE))
 
+- name: delete-cluster
+  public: true
+  plan:
+    - get: jenkins-on-k8s-pipeline
+      trigger: false
+    - task: delete-cluster
+      file: jenkins-on-k8s-pipeline/kubernetes/tasks/delete-cluster.yaml
+      params:        
+        AWS_ACCESS_KEY_ID: ((AWS_ID))
+        AWS_SECRET_ACCESS_KEY: ((AWS_ACCESS))
+        AWS_DEFAULT_REGION:  us-east-1
+        CLUSTER_NAME: ((CLUSTER_NAME))
+        KOPS_STATE_STORE: ((KOPS_STATE_STORE))
 
 
 

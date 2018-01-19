@@ -1,0 +1,2 @@
+CLUSTER_NAME: myfirstcluster.k8s.local
+KOPS_STATE_STORE: s3://prefix-chiheb-dkhil-state-store

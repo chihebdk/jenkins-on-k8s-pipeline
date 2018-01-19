@@ -14,6 +14,8 @@ params:
   AWS_ACCESS_KEY_ID: ((AWS_ID))
   AWS_SECRET_ACCESS_KEY: ((AWS_ACCESS))
   AWS_DEFAULT_REGION: us-east-1
+  CLUSTER_NAME: ((CLUSTER_NAME))
+  KOPS_STATE_STORE: ((KOPS_STATE_STORE))
 
 run:
   path: ./jenkins-on-k8s-pipeline/kubernetes/scripts/install-tools.sh

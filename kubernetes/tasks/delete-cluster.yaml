@@ -2,8 +2,6 @@ platform: linux
 
 inputs:
 - name: jenkins-on-k8s-pipeline
-
-outputs:
 - name: output
 
 image_resource:
@@ -20,4 +18,4 @@ params:
   KOPS_STATE_STORE: ((KOPS_STATE_STORE))
 
 run:
-  path: ./jenkins-on-k8s-pipeline/kubernetes/scripts/create-cluster.sh
+  path: ./jenkins-on-k8s-pipeline/kubernetes/scripts/delete-cluster.sh
