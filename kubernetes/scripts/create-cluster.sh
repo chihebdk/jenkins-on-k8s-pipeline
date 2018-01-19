@@ -30,9 +30,6 @@ if [ $(aws s3api list-buckets | jq .Buckets[].Name | grep -w \"prefix-chiheb-dkh
 fi
 aws s3api create-bucket  --bucket prefix-chiheb-dkhil-state-store --region us-east-1
 
-export NAME=myfirstcluster.k8s.local
-export KOPS_STATE_STORE=s3://prefix-chiheb-dkhil-state-store
-
 #Recreate key-pair
 aws ec2 delete-key-pair --key-name kops
 aws ec2 create-key-pair --key-name kops --query 'KeyMaterial' --output text > kops.pem
@@ -47,7 +44,7 @@ kops create secret --name myfirstcluster.k8s.local sshpublickey admin -i ~/.ssh/
 kops update cluster ${NAME} --yes
 
 
-sleep 120
+sleep 240
 kubectl get nodes
 
 helm init
