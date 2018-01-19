@@ -42,6 +42,7 @@ ssh-keygen -y -f  ~/.ssh/id_rsa >  ~/.ssh/id_rsa.pub
 
 kops create cluster --zones us-east-1a ${CLUSTER_NAME}
 kops delete secret
+sleep 30
 kops create secret --name ${CLUSTER_NAME} sshpublickey admin -i ~/.ssh/id_rsa.pub
 kops update cluster ${CLUSTER_NAME} --yes
 
