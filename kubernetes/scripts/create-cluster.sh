@@ -25,7 +25,7 @@ aws iam create-access-key --user-name kops
 
 
 #Recreate s3 bucket
-if [ `aws s3api list-buckets | jq .Buckets[].Name | grep -w \"prefix-chiheb-dkhil-state-store\"` == "\"prefix-chiheb-dkhil-state-store\""``] ; then
+if [ `aws s3api list-buckets | jq .Buckets[].Name | grep -w \"prefix-chiheb-dkhil-state-store\"` == "\"prefix-chiheb-dkhil-state-store\""] ; then
     aws s3 rb s3://prefix-chiheb-dkhil-state-store --force  
 fi
 aws s3api create-bucket  --bucket prefix-chiheb-dkhil-state-store --region us-east-1
