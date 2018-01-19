@@ -24,6 +24,8 @@ jobs:
   public: true
   plan:
     - get: jenkins-on-k8s-pipeline
+      passed:
+      - create-cluster
       trigger: true
     - task: install-tools
       file: jenkins-on-k8s-pipeline/kubernetes/tasks/install-tools.yaml
