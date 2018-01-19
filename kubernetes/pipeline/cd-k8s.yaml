@@ -19,14 +19,6 @@ jobs:
         AWS_DEFAULT_REGION:  us-east-1
         CLUSTER_NAME: ((CLUSTER_NAME))
         KOPS_STATE_STORE: ((KOPS_STATE_STORE))
-
-- name: install-tools
-  public: true
-  plan:
-    - get: jenkins-on-k8s-pipeline
-      passed:
-      - create-cluster
-      trigger: true
     - task: install-tools
       file: jenkins-on-k8s-pipeline/kubernetes/tasks/install-tools.yaml
       params:        
