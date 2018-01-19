@@ -47,14 +47,10 @@ kops create secret --name myfirstcluster.k8s.local sshpublickey admin -i ~/.ssh/
 kops update cluster ${NAME} --yes
 
 
-sleep 240
+sleep 120
 kubectl get nodes
 
 helm init
 
-mkdir output
 cp -rf /root/.kube output/
-
-sleep 240
-kops delete cluster --name ${NAME} --yes
-sleep  180
+cp -rf /root/.helm output/

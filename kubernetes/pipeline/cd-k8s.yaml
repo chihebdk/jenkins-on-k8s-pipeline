@@ -17,7 +17,12 @@ jobs:
         AWS_ACCESS_KEY_ID: ((AWS_ID))
         AWS_SECRET_ACCESS_KEY: ((AWS_ACCESS))
         AWS_DEFAULT_REGION:  us-east-1
- 
+    - task: install-tools
+      file: jenkins-on-k8s-pipeline/kubernetes/tasks/install-tools.yaml
+      params:        
+        AWS_ACCESS_KEY_ID: ((AWS_ID))
+        AWS_SECRET_ACCESS_KEY: ((AWS_ACCESS))
+        AWS_DEFAULT_REGION:  us-east-1
 
 
 
