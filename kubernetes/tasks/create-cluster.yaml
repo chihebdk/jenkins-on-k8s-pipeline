@@ -2,7 +2,7 @@ platform: linux
 inputs:
 - name: jenkins-on-k8s-pipeline
 outputs:
-- name: /root/.kube 
+- name: output
 image_resource:
     type: docker-image
     source:
